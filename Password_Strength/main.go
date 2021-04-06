@@ -7,8 +7,9 @@ func validatePassword(password string) bool {
 	passLength := len(password)
 	if passLength >= requiredLength {
 		specialChar, lowerCase, upperCase, numbers := 0, 0, 0, 0
-		for i := 0; i < passLength; i = i + 1 {
+		for i := 0; i < passLength; i++ {
 			asciiCode := int(password[i])
+			fmt.Println(password[i])
 
 			// Special Characters (32–47 / 58–64 / 91–96 / 123–126): Special characters include all printable characters that are neither letters nor numbers.
 			// These include punctuation or technical, mathematical characters. ASCII also includes the space (a non-visible but printable character),
@@ -20,12 +21,12 @@ func validatePassword(password string) bool {
 
 			if asciiCode >= 32 && asciiCode <= 47 || asciiCode >= 58 && asciiCode <= 64 || asciiCode >= 91 && asciiCode <= 96 || asciiCode >= 123 && asciiCode <= 47 {
 				specialChar++
-			} else if asciiCode >= 30 && asciiCode <= 39 {
+			} else if asciiCode >= 48 && asciiCode <= 57 {
 				numbers++
-			} else if asciiCode >= 32 && asciiCode <= 47 {
+			} else if asciiCode >= 65 && asciiCode <= 69 {
 				upperCase++
-			} else if asciiCode >= 32 && asciiCode <= 47 {
-				upperCase++
+			} else if asciiCode >= 97 && asciiCode <= 122 {
+				lowerCase++
 			}
 
 			fmt.Println(specialChar, upperCase, lowerCase, numbers)
@@ -46,6 +47,7 @@ func validatePassword(password string) bool {
 func main() {
 
 	myPassword := "Adegbeste@1"
+	fmt.Println(myPassword)
 	fmt.Println(validatePassword(myPassword))
 
 }
